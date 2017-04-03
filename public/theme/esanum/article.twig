@@ -1,0 +1,72 @@
+{% extends 'partials/_master.twig' %}
+
+{# To change the generated html and configure the options, see:
+   https://docs.bolt.cm/templates/fields-tag #}
+
+{% set currentarticle = record.slug %}
+{% set currentcategory = paths.current|trim(currentarticle)|trim('/')|split('/')|last %}
+{% set currentsubsite = paths.current|trim(currentarticle)|trim('/')|trim(currentcategory)|trim('/')|split('/')|last %}
+{% setcontent subsites = 'subsites' where {slug: currentsubsite} %}
+{# wählt alle Artikel die der Subsite und den im Menu gewählten Unterpunkt (Pfad wird in menu.yml bestimmt) zugeordnet sind #}
+{% setcontent articles = 'articles' where {sites: currentsubsite, categories: currentcategory } %}
+
+{% block header %}
+
+    (subsite-slug: {{ currentsubsite }}, article-category: {{ currentcategory }}, article: {{ currentarticle }})
+
+    {% for subsite in subsites %}
+        <div class="top-bar">
+          <div class="top-bar-left">
+
+              <h3>{{ subsite.header }}</h3>
+
+          </div>
+
+          <div class="top-bar-right">
+
+              {{ subsite.header_image|showimage(600, 200) }}
+
+          </div>
+
+        </div>
+
+        {{ subsite.summary }}
+
+        {{ menu(currentsubsite, 'partials/_sub_menu.twig') }}
+
+
+        {#
+        % include 'partials/_recordfooter.twig' with { 'record': record, 'extended': true } %
+        #}
+
+    {% endfor %}
+
+{% endblock header %}
+
+
+{% block main %}
+
+    {# Uncomment this if you wish to dump the entire record to the client, for debugging purposes.
+    {{ dump(record) }}
+    #}
+
+
+    {# articles listing: #}
+
+
+
+    <h1 class="article">{{ record.headline }}</h1>
+
+    <a class="article" href="{{ record.link }}">
+
+        {{ record.image|showimage(132, 132) }}
+
+        <b>{{ record.teaser }}</b> {# löschen?!? #}
+
+        <p>{{ record.text }}</p>
+
+    </a>
+
+    {% include 'partials/_recordfooter.twig' with { 'record': record, 'extended': true } %}
+
+{% endblock main %}

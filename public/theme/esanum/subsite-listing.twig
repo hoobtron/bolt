@@ -1,0 +1,75 @@
+{% extends 'partials/_master.twig' %}
+
+
+{% block header %}
+
+    Wissensarchiv-Übersichtsseite ohne header (evtl. Suche einblenden?)
+
+{% endblock header %}
+
+
+{% block main %}
+
+    {# Reihenfolge der Gruppierungen auf Wissensarchiv-Übersichtsseite wird bestimmt durch
+    sitegroups-options-Reihenfolge in taxonomy.yml! #}
+    <style>
+    div#orderContainer {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-wrap: wrap;
+    }
+    {% for sitegroup in app.config.get('taxonomy/sitegroups/options') %}
+    div .{{ sitegroup|lower }} {
+        order: {{ loop.index }};
+        -webkit-order: {{ loop.index }}; /* Safari */
+    }
+    {% endfor %}
+    </style>
+
+    <div id="orderContainer">
+    {% for sitegroup in app.config.get('taxonomy/sitegroups/options') %}
+        <div class="sitegroupTitle {{ sitegroup|lower }}">{{ sitegroup }}</div>
+    {% endfor %}
+
+    {% for record in records %}
+
+        <a href="{{ record.link }}" class="{{ record.taxonomy.sitegroups|first|lower }}">
+            <div class="subsite">
+                <h5>{{ record.teaser_title }}</h5>
+
+                {% if record.taxonomy.flags %}
+                    <div class="flag {{ record.taxonomy.flags|first|lower }}"></div>
+                {% endif %}
+
+                {{ record.teaser_image|showimage(132, 132) }}
+
+                {{ record.teaser_text }}
+
+                {% if record.taxonomy.providers %}
+                    <hr>
+                    <p>Mit Unterstützung von
+                    {% for provider in record.taxonomy.providers %}
+                        {% if loop.index > 1 %}, {% endif %}
+                        {{ provider }}
+                    {% endfor %}</p>
+                {% endif %}
+
+            </div>
+        </a>
+    {% else %}
+
+        <h2>{{ __('general.phrase.no-content-found') }}</h2>
+        <div class="sitegroupTitle">
+            <p>
+                {{ __("Unfortunately, no content could be found. Try another page, or go to the <a href=\"%paths_root%\">homepage</a>.", {'%paths_root%': paths.root} ) }}
+            </p>
+        </div>
+
+    {% endfor %}
+
+    </div> {# orderContainer #}
+
+    {# If there are more records than will fit on one page, the pager is shown. #}
+    {{ pager(template = 'partials/_sub_pager.twig') }}
+
+{% endblock main %}

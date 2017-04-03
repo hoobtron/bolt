@@ -1,0 +1,69 @@
+{
+  "exclude": [
+    "^(node_modules|bower_components|\\.imdone|target|build|dist|logs)[\\/\\\\]?|\\.(git|svn|hg|npmignore)|\\~$|\\.(jpg|png|gif|swp|ttf|otf)$"
+  ],
+  "watcher": true,
+  "keepEmptyPriority": false,
+  "code": {
+    "include_lists": [
+      "TODO",
+      "DOING",
+      "DONE",
+      "PLANNING",
+      "FIXME",
+      "ARCHIVE",
+      "HACK",
+      "CHANGED",
+      "XXX",
+      "IDEA",
+      "NOTE",
+      "REVIEW"
+    ]
+  },
+  "lists": [
+    {
+      "name": "sitename",
+      "hidden": false
+    },
+    {
+      "name": "payoff",
+      "hidden": false
+    },
+    {
+      "name": "theme",
+      "hidden": false
+    },
+    {
+      "name": "timezone",
+      "hidden": false
+    },
+    {
+      "name": "canonical",
+      "hidden": false
+    },
+    {
+      "name": "favicon",
+      "hidden": false
+    },
+    {
+      "name": "__nodes",
+      "hidden": false
+    },
+    {
+      "name": "contenttype_abc",
+      "hidden": false
+    },
+    {
+      "name": "contenttype_xyz",
+      "hidden": false
+    }
+  ],
+  "marked": {
+    "gfm": true,
+    "tables": true,
+    "breaks": false,
+    "pedantic": false,
+    "smartLists": true,
+    "langPrefix": "language-"
+  }
+}

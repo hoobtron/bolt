@@ -1,0 +1,118 @@
+# This file defines the menus on the website. See the documentation for
+# details: https://docs.bolt.cm/content/menus
+##################################
+#
+# Der Menu-Titel muss genau den selben Namen haben wie der letzte Teil des Permalinks der dazugehörigen Subsite!
+#
+##################################
+
+
+main:
+    - label: Homepage
+      path: homepage
+      class: first
+
+    - label: News
+      path: news/
+    - label: Interview
+      path: interview/
+    - label: Fachdiskussion
+      path: fachdiskussion/
+    - label: Pressemitteilung
+      path: pressemitteilung/
+
+#      submenu:
+#          - label: Sub 1
+#            path: entry/2
+#          - label: Sub 2
+#            class: menu-item-class
+#            path: entry/3
+#          - label: Sub 3
+#            class: sub-class
+#            path: page/3
+
+    - label: Alle Artikel
+      path: articles/
+
+#    - label: The Bolt site
+#      link: http://bolt.cm
+
+    - label: (Suche)
+      path: search
+      class: last
+
+CED:
+    - label: News
+      path: wissensarchiv/CED/news/
+      class: first
+
+    - label: Fachdiskussionen
+      path: wissensarchiv/CED/fachdiskussionen/
+
+    - label: Kongresse
+      path: wissensarchiv/CED/kongresse/
+
+    - label: Studie
+      path: wissensarchiv/CED/studie/
+
+    - label: Services
+      path: wissensarchiv/CED/services/
+      class: last
+
+RA:
+    - label: News
+      path: wissensarchiv/RA/news/
+      class: first
+
+    - label: Kongresse
+      path: wissensarchiv/RA/kongresse/
+
+    - label: Studien
+      path: wissensarchiv/RA/studien/
+
+    - label: Services
+      path: wissensarchiv/RA/services/
+      class: last
+
+
+onkocenter:
+
+    - label: Immunonkologie
+      path: wissensarchiv/onkocenter/immunonkologie/
+      class: first
+
+    - label: Malignes Melanom
+      path: wissensarchiv/onkocenter/malignes-melanom/
+
+    - label: Lungenkarzinom
+      path: wissensarchiv/onkocenter/lungenkarzinom/
+
+    - label: Nierenzellkarzinom
+      path: wissensarchiv/onkocenter/nierenzellkarzinom/
+
+    - label: Multiples Myelom
+      path: wissensarchiv/onkocenter/multiples-myelom/
+
+    - label: Services
+      path: wissensarchiv/onkocenter/services/
+      class: last
+
+
+antikoagulans:
+
+    - label: News
+      path: wissensarchiv/antikoagulans/news/
+      class: first
+
+    - label: Indikationen
+      path: wissensarchiv/antikoagulans/indikationen/
+
+    - label: Fortbildungen
+      path: wissensarchiv/antikoagulans/fortbildungen/
+
+    - label: Bibliothek
+      path: wissensarchiv/antikoagulans/bibliothek/
+
+    - label: Mediathek
+      path: wissensarchiv/antikoagulans/mediathek/
+      class: last

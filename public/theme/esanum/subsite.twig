@@ -1,0 +1,89 @@
+{% extends 'partials/_master.twig' %}
+
+{# To change the generated html and configure the options, see:
+   https://docs.bolt.cm/templates/fields-tag #}
+
+
+{% set currentcategory = paths.current|split('/')|last %}
+{% set currentsubsite = record.slug %}
+
+{# wählt alle Artikel die der Subsite und den im Menu gewählten Unterpunkt (Pfad wird in menu.yml bestimmt) zugeordnet sind #}
+{% setcontent articles = 'articles' where {sites: currentsubsite, categories: currentcategory } %}
+
+{% block header %}
+
+    (subsite-slug: {{ currentsubsite }}, article-category: {{ currentcategory }})
+
+
+    <div class="top-bar">
+      <div class="top-bar-left">
+
+          <h3>{{ record.header }}</h3>
+
+      </div>
+
+      <div class="top-bar-right">
+
+          {{ record.header_image|showimage(600, 200) }}
+
+      </div>
+
+    </div>
+
+    {{ record.summary }}
+
+    {{ menu(currentsubsite, 'partials/_sub_menu.twig') }}
+
+
+    {#
+    % include 'partials/_recordfooter.twig' with { 'record': record, 'extended': true } %
+    #}
+
+
+
+{% endblock header %}
+
+
+{% block main %}
+
+    {# Uncomment this if you wish to dump the entire record to the client, for debugging purposes.
+    {{ dump(articles) }}
+    #}
+
+    {# articles listing: #}
+
+    {% for article in articles %}
+
+        <h1 class="article"><a href="{{ article.link }}">{{ article.headline }}</a></h1>
+
+        <a class="article" href="{{ article.link }}">
+
+            {{ article.image|showimage(132, 132) }}
+
+            {{ article.teaser }} {# löschen?!? #}
+
+            <p>{{ article.text|excerpt(200) }}</p>
+
+        </a>
+
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
+
+    {% else %}
+
+        <h2>{{ __('general.phrase.no-content-found') }}</h2>
+        <span class="article">
+            <p>
+                {{ __("Unfortunately, no content could be found. Try another page, or go to the <a href=\"%paths_root%\">homepage</a>.", {'%paths_root%': paths.root} ) }}
+            </p>
+        </span>
+
+    {% endfor %}
+
+    {# If there are more records than will fit on one page, the pager is shown. #}
+    {{ pager(template = 'partials/_sub_pager.twig') }}
+
+
+
+{% endblock main %}

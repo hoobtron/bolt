@@ -1,0 +1,61 @@
+{% extends 'partials/_master.twig' %}
+
+{% setcontent record = 'blocks/404-not-found' %}
+
+{% block title %}
+    {{ record.title|default('404 not found') }}
+{% endblock title %}
+
+
+{% block header %}
+
+    (subsite-slug: {{ record.slug }}) wie umsetzen, dass vorhergehende subsite aktuell bleibt?
+    {{ menu(record.slug, 'partials/_sub_menu.twig') }}
+
+{% endblock header %}
+
+
+
+{% block main %}
+
+    <div class="row">
+        <div class="large-12 columns">
+
+        {# special case: See if we actually want the Styleguide. #}
+        {% if app.request.server.get('REQUEST_URI') == '/styleguide' %}
+            {{ include('styleguide.twig') }}
+        {% else %}
+            <h1>{{ record.title|default('404 not found') }}</h1>
+
+            {% if fields(record) %}
+                {{ fields(record) }}
+            {% else %}
+                <p>
+                    The requested page was not found.
+                </p>
+
+                <div class="primary callout" data-closable>
+                    <h5>Add a Blocks record with slug '404-not-found' to customize this message. </h5>
+                    <p>If it's not showing up here, doublecheck that the <tt>slug</tt> is correct, and that the Block is published.</p>
+                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+
+        {% endif %}
+
+
+
+        <form method="get" action="{{ paths.root }}search" id="searchform-inline" enctype="text/plain">
+          <ul class="menu">
+            <li><input type="search" value="{% if search is defined %}{{ search|escape }}{% endif %}" placeholder="{{ __('general.phrase.search-ellipsis') }}" name="search"></li>
+            <li><button type="submit" class="button secondary">{{ __('general.phrase.search') }}</button></li>
+          </ul>
+        </form>
+
+
+        </div>
+    </div>
+
+{% endblock main %}

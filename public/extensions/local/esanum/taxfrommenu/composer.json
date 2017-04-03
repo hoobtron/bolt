@@ -1,0 +1,24 @@
+{
+    "name": "esanum/taxfrommenu",
+    "description": "generate taxonomy selections (the options) from menu.yml labels.",
+    "type": "bolt-extension",
+    "require": {
+        "bolt/bolt": "^3.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Esanum",
+            "email": "hubert.horlamus@esanum.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Bolt\\Extension\\Esanum\\TaxFromMenu\\": "src/"
+        }
+    },
+    "extra": {
+        "bolt-assets": "web",
+        "bolt-class": "Bolt\\Extension\\Esanum\\TaxFromMenu\\TaxFromMenuExtension"
+    }
+}

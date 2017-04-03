@@ -1,0 +1,95 @@
+# This file defines the different types of taxonomies in Bolt. See the
+# documentation for details: https://docs.bolt.cm/content/taxonomies
+
+# > Taxonomie Typen-Name darf keinen Unterstrich haben!!! (in TaxTab zugeordneter Wert wird sonst nicht gespeichert)
+
+tags:
+    name: Tags
+    singular_name: Tag
+    slug: tags
+    singular_slug: tag
+    behaves_like: tags
+    postfix: "Add some freeform tags. Start a new tag by typing a comma or space."
+    allow_spaces: false
+#   listing_template: tag-listing.twig #custom template
+
+groups:
+    slug: groups
+    singular_slug: group
+    behaves_like: grouping
+    options: { main: "The main group", meta: "Meta group", other: "The other stuff" }
+    has_sortorder: true
+
+categories:
+    name: Kategorien (Menu-Einträge)
+    singular_name: Kategorie (Menu-Eintrag)
+    slug: categories
+    singular_slug: category
+    behaves_like: categories
+    multiple: true
+    options:
+      - News
+      - Interview
+      - Fachdiskussion
+      - Pressemitteilung
+      # ACHTUNG: hier angegebene Optionen werden überschrieben durch Auslesen aller Menu-Einträge-Labels aus menu.yml (code in index.php)
+
+expertises:
+    name: Fachgebiete
+    singular_name: Fachgebiet
+    slug: expertises
+    singular_slug: expertise
+    behaves_like: categories
+    multiple: true
+    options:
+      - Allgemeinmedizin
+      - Anästhesiologie
+      - Schmerztherapie
+      - Intensivmedizin
+      - Arbeitsmedizin
+      - Anatomie + Histologie
+      - Augenheilkunde
+      - Biochemie
+      - etc...
+      - Gastroenterologie
+
+sites:
+    name: Wissensarchiv sites
+    singular_name: Wissensarchiv site
+    slug: sites
+    singular_slug: site
+    behaves_like: grouping
+    options:
+      CED: "Chronisch-entzündliche Darmerkrankung (CED)"
+      RA: "Entzündlich-rheumatische Erkrankungen (RA)"
+      antikoagulans: "Kardiologisches Infocenter Antikoagulans"
+      onkocenter: "OnkoCenter"
+      frauengesundheit: "Gynäkologisches Infocenter Frauengesundheit"
+      impfen: "Impfen!"
+      etc: "etc."
+
+sitegroups:
+    name: Wissensarchiv Gruppen
+    singular_name: Wissensarchiv Gruppe
+    slug: sitegroups
+    singular_slug: sitegroup
+    behaves_like: categories
+    options: [ Fokusgruppen, Infocenter, Eventhighlights ]
+    # options-Reihenfolge bestimmt auch Reihenfolge der Gruppierungen auf Wissensarchiv-Übersichtsseite! (siehe subsite-listing.twig)
+
+providers:
+    name: Anbieter
+    singular_name: Anbieter
+    slug: providers
+    singular_slug: provider
+    behaves_like: categories
+    multiple: true
+    options: [ esanum, MSD, gsk, vfa, TEVA, Novartis, Boehringer Ingelheim, Bristol-Myers Squibb, Pfizer, Deutscher Hausärzteverband ]
+
+flags:
+    name: Flags
+    singular_name: Flag
+    slug: flags
+    singular_slug: flag
+    behaves_like: categories
+    options: [ NEU, NEW, UPDATE ]

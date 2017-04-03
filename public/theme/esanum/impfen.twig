@@ -1,0 +1,15 @@
+{% extends 'partials/_master.twig' %}
+
+{% block header %}
+
+{% endblock header %}
+
+
+{% block main %}
+
+    <h1>test: "static" template - impfen</h1>
+
+    {% include 'impfen/index.php' only %}
+    {#% include 'https://www.esanum.de/wissensarchiv/impfen/index.php' only %#}
+
+{% endblock main %}
